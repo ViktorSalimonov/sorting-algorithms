@@ -31,15 +31,17 @@ def insertion_sort(arr):
 3. Рекурсивно выполнить шаги 1 и 2, пока в подмассиве есть хотя бы 2 элемента.
 
 ```python
+import random
+
 def quick_sort(arr):
-    if len(arr) <= 1:
+    n = len(arr)
+    if n <= 1:
         return arr
     else:
         pivot = random.choice(arr)
         less = [x for x in arr if x < pivot]
-        equal = [x for x in arr if x == pivot]
-        greater = [x for x in arr if x > pivot]
-        return quick_sort(less) + equal + quick_sort(greater)
+        greater_or_equal = [x for x in arr if x >= pivot]
+        return quick_sort(less) + quick_sort(greater_or_equal)
 ```
 
 Оценка сложности:
