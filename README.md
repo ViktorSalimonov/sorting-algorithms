@@ -48,3 +48,41 @@ def quick_sort(arr):
 - В худшем случае **O(n²)**
 - В среднем случае **O(n * log n)**
 - В лучшем случае **O(n * log n)**
+
+## Сортировка слиянием (Merge Sort)
+Рекурсивный алгоритм, который работает по следующему принципу:
+1. Разделить массив на две равные части
+2. Отсортировать каждую половину
+3. Из двух отсортированных массивов получить один (операция слияния)
+
+```python
+def merge_sort(arr):
+    n = len(arr)
+    if n <= 1:
+        return arr
+    else:
+        middle = int(len(arr) / 2)
+        left = merge_sort(arr[:middle])
+        right = merge_sort(arr[middle:])
+        return merge(left, right)
+
+def merge(left, right):
+    result = []
+    while len(left) > 0 and len(right) > 0:
+        if left[0] <= right[0]:
+            result.append(left[0])
+            left = left[1:]
+        else:
+            result.append(right[0])
+            right = right[1:]
+    if len(left) > 0:
+        result += left
+    if len(right) > 0:
+        result += right
+    return result
+```
+
+Оценка сложности:
+- В худшем случае **O(n * log n)**
+- В среднем случае **O(n * log n)**
+- В лучшем случае **O(n * log n)**
